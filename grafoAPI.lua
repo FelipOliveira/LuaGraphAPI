@@ -6,10 +6,10 @@ Correções a implantar:
 - Usar strings para identificar os vértices, ao invés de seus índices;
 - Corrigir o método para remover vértices.
 
-Feito por Felipe Oliveira - 2019 - UFPA.
+Feito por Felipe Oliveira - ICEN-UFPA [2019].
 ]]--
 --importa as funções de busca
-local search = require "grafoDFS"
+local search = require "buscaOps"
 
 --meta classe Grafo
 Grafo = {
@@ -31,11 +31,13 @@ function Grafo:new(o, vertice)
 	for i=1,vertice do
 		self.listaAdj[i] = {}
 	end
+	print("Grafo criado com sucesso.\n")
 	return o
 end
 
 --lista o grafo, contando a qte de vertices, arestas e as relações entre os vértices
 function Grafo:imprimir()
+	print("==============")
 	print("\nNúmero de vértices: "..self.vertices)
 	print("número de arestas: "..self.arestas)
 	print("Número de laços: "..self.lacos)
@@ -190,7 +192,7 @@ function Grafo:verificaEulerAberto()
 	end
 end
 
---Busca em profundidade (DFS)
+--[[Busca em profundidade (DFS)
 --variáveis globais necessárias
 cor = {}
 d = {}
@@ -203,10 +205,6 @@ function Grafo:dfs()
 		d[i] = 0
 		f[i] = 0
 		--table.insert(tempo.d[i], {})
-		--[[for j=1, #self.listaAdj[i] do
-			cor[i][j] = "branco"
-			pi[i][j] = nil
-		end]]
 	end
 	tempo = 0
 	for i=1, #self.listaAdj do
@@ -229,14 +227,16 @@ function Grafo:dfsVisita(i)
 	end
 	cor[i] = "preto"
 	f[i] = tempo + 1
-end
+end]]
 
 G = Grafo:new(nil, 5)
-search.dfs(G)
-search.bfs(G, 1)
---[[G:imprimir()
+
 G:addEdgeBi(1,2)
-G:addEdgeBi(4,2)
-G:addEdgeBi(2,2)
 G:addEdgeBi(2,3)
-G:dfs()]]
+G:addEdgeBi(3,4)
+G:addEdgeBi(4,5)
+G:addEdgeBi(5,1)
+G:imprimir()
+search.conectado_p1(G)
+--print(search.conectado(1,2))
+--search.bfs(G, 1)

@@ -5,9 +5,9 @@ function Fila.new()
 end
 --põe um elemento na fila
 function Fila.coloca (fila, valor)
-    local last = fila.last + 1
+    local last = fila.last + 1 --aumenta o tamanho da lista
     fila.last = last
-    fila[last] = valor
+    fila[last] = valor --adiciona o valor no ultimo lugar da fila
 end
 --retira um elemento da fila
 function Fila.retira(fila)

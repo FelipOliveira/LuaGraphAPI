@@ -9,9 +9,9 @@ busca.d = {} --mostra o tempo de descoberta (em ticks)
 busca.f = {} --mostra o tempo de  (em ticks)
 busca.pi = {} --mostra o vértice antecessor do vértice analisado
 busca.tempo = 0
-busca.marcado = {}
-busca.id = {}
-busca.cont = 0
+--busca.marcado = {}
+--busca.id = {}
+--busca.cont = 0
 
 --realiza a busca em profundidade (recursivo)
 function busca.dfs(grafo)
@@ -58,10 +58,10 @@ function busca.bfs(grafo, s)
 			busca.d[u] = nil
 			busca.pi[u] = nil
 		end
-    end
-    busca.cor[s] = "cinza"
-    busca.d[s] = 0
-    busca.pi[s] = nil --o vértice fonte não tem antecessor
+	end
+	busca.cor[s] = "cinza"
+	busca.d[s] = 0
+	busca.pi[s] = nil --o vértice fonte não tem antecessor
     Q = queue.new() --cria uma nova fila
     queue.coloca(Q, s)
     while Q.first < Q.last do -- se a fila não estiver vazia
@@ -77,30 +77,6 @@ function busca.bfs(grafo, s)
         busca.cor[u] = "preto"
     end
     --print("bfs ok")
-end
-
-function busca.conectado_p1(grafo)
-	busca.marcado[1]=true
-	for s=1, #grafo.listaAdj do
-		if busca.marcado[s]~=true then
-			busca.conectado_p2(grafo, s)
-			busca.cont = busca.cont + 1
-		end
-	end
-end
-
-function busca.conectado_p2(grafo, v)
-	busca.marcado[v] = true
-	busca.id[v] = busca.cont
-	for w=1, #grafo.listaAdj do
-		if busca.marcado[w]~=true then
-			busca.conectado_p2(grafo, w)
-		end
-	end
-end
-
-function busca.conectado(v, w)
-	return busca.id[v]==busca.id[w]
 end
 
 return busca

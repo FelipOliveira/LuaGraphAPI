@@ -10,6 +10,7 @@ Feito por Felipe Oliveira - ICEN-UFPA [2019].
 ]]--
 --importa as funções de busca
 local search = require "buscaOps"
+local conex = require "conexo"
 
 --meta classe Grafo
 Grafo = {
@@ -229,14 +230,14 @@ function Grafo:dfsVisita(i)
 	f[i] = tempo + 1
 end]]
 
-G = Grafo:new(nil, 5)
-
+G = Grafo:new(nil, 5) --cria um ovo grafo G
+--adiciona as arestas, tornando-o conexo
 G:addEdgeBi(1,2)
 G:addEdgeBi(2,3)
 G:addEdgeBi(3,4)
 G:addEdgeBi(4,5)
 G:addEdgeBi(5,1)
 G:imprimir()
-search.conectado_p1(G)
+conex.comp_conectados(G) --verifica se o grafo é conexo
 --print(search.conectado(1,2))
 --search.bfs(G, 1)
